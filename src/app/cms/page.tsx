@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { SiteContent, Feature, Product, ProcessStep } from "@/types/cms";
+import { SiteContent, Feature, Product, ProcessStep, ProjectItem } from "@/types/cms";
 import { loadContent, saveContent, resetContent, defaultContent } from "@/lib/cms-store";
 
-type Section = "overview" | "hero" | "features" | "products" | "process" | "cta" | "footer";
+type Section = "overview" | "hero" | "features" | "products" | "process" | "projects" | "cta" | "footer";
 
 export default function CmsPage() {
   const [activeSection, setActiveSection] = useState<Section>("overview");
@@ -43,6 +43,7 @@ export default function CmsPage() {
     { id: "features", label: "Features", icon: "◫" },
     { id: "products", label: "Products", icon: "◱" },
     { id: "process", label: "Process", icon: "◳" },
+    { id: "projects", label: "Projects", icon: "◈" },
     { id: "cta", label: "CTA", icon: "◆" },
     { id: "footer", label: "Footer", icon: "◻" },
   ];
@@ -195,6 +196,12 @@ export default function CmsPage() {
               onChange={(process) => update((c) => ({ ...c, process }))}
             />
           )}
+          {activeSection === "projects" && (
+            <ProjectsPanel
+              projects={content.projects}
+              onChange={(projects) => update((c) => ({ ...c, projects }))}
+            />
+          )}
           {activeSection === "cta" && (
             <CtaPanel
               content={content}
@@ -227,6 +234,7 @@ function OverviewPanel({
     { section: "features" as Section, label: "Features", preview: `${content.features.length} items` },
     { section: "products" as Section, label: "Products", preview: `${content.products.length} products` },
     { section: "process" as Section, label: "Process", preview: `${content.process.length} steps` },
+    { section: "projects" as Section, label: "Projects", preview: `${content.projects.length} projects` },
     { section: "cta" as Section, label: "CTA", preview: content.cta.headline.split("\n")[0] },
     { section: "footer" as Section, label: "Footer", preview: content.footer.studioName },
   ];
@@ -531,6 +539,70 @@ function ProcessPanel({
             </div>
             <button
               onClick={() => removeItem(step.id)}
+              className="self-start mt-6 p-2 rounded transition-colors"
+              style={{ color: "var(--text-tertiary)", background: "var(--surface-2)" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+        </SectionCard>
+      ))}
+    </div>
+  );
+}
+
+function ProjectsPanel({
+  projects,
+  onChange,
+}: {
+  projects: ProjectItem[];
+  onChange: (p: ProjectItem[]) => void;
+}) {
+  const updateItem = (id: string, key: keyof ProjectItem, value: string | string[]) => {
+    onChange(projects.map((p) => (p.id === id ? { ...p, [key]: value } : p)));
+  };
+
+  const addItem = () => {
+    const newItem: ProjectItem = {
+      id: `proj${Date.now()}`,
+      title: "새 프로젝트",
+      client: "발주처",
+      year: String(new Date().getFullYear()),
+      category: "GIS",
+      description: "프로젝트 설명을 입력하세요.",
+      tags: ["GIS"],
+    };
+    onChange([...projects, newItem]);
+  };
+
+  const removeItem = (id: string) => onChange(projects.filter((p) => p.id !== id));
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-light" style={{ letterSpacing: "-0.02em" }}>Projects</h2>
+        <button onClick={addItem} className="btn-secondary text-xs" style={{ padding: "8px 16px" }}>
+          + Add Project
+        </button>
+      </div>
+
+      {projects.map((proj) => (
+        <SectionCard key={proj.id} title={proj.title}>
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <Field label="프로젝트명" value={proj.title} onChange={(v) => updateItem(proj.id, "title", v)} />
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="발주처 / 클라이언트" value={proj.client} onChange={(v) => updateItem(proj.id, "client", v)} />
+                <Field label="수행연도" value={proj.year} onChange={(v) => updateItem(proj.id, "year", v)} />
+                <Field label="분야 / 카테고리" value={proj.category} onChange={(v) => updateItem(proj.id, "category", v)} />
+                <Field label="태그 (쉼표 구분)" value={proj.tags.join(", ")} onChange={(v) => updateItem(proj.id, "tags", v.split(",").map((t) => t.trim()))} />
+              </div>
+              <Field label="설명" value={proj.description} onChange={(v) => updateItem(proj.id, "description", v)} multiline />
+            </div>
+            <button
+              onClick={() => removeItem(proj.id)}
               className="self-start mt-6 p-2 rounded transition-colors"
               style={{ color: "var(--text-tertiary)", background: "var(--surface-2)" }}
             >

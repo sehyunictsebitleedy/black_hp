@@ -1,5 +1,6 @@
 import { SiteContent } from "@/types/cms";
 
+
 export const defaultContent: SiteContent = {
   hero: {
     eyebrow: "Smarter IT Solution Provider",
@@ -122,6 +123,53 @@ export const defaultContent: SiteContent = {
       title: "운영 및 유지보수",
       description: "시스템 오픈 이후에도 지속적인 모니터링과 기술 지원을 제공합니다.",
       detail: "상시",
+    },
+  ],
+  projects: [
+    {
+      id: "proj1",
+      title: "국가도로 GIS 통합관리 플랫폼",
+      client: "한국도로공사",
+      year: "2023",
+      category: "GIS 플랫폼",
+      description: "전국 고속도로 공간데이터 통합 관리 및 시각화 웹 플랫폼 구축. SmartGeoKit 2D/3D 엔진 적용.",
+      tags: ["GIS", "WebGL", "공간정보"],
+    },
+    {
+      id: "proj2",
+      title: "스마트 시설물 관리 시스템",
+      client: "경기도청",
+      year: "2023",
+      category: "스마트시티",
+      description: "IoT 센서 기반 실시간 시설물 위치 모니터링 및 이상 감지 시스템. SmartGeoKit Xler 적용.",
+      tags: ["IoT", "실시간", "모니터링"],
+    },
+    {
+      id: "proj3",
+      title: "CAD 도면 통합 관리 솔루션",
+      client: "LH 한국토지주택공사",
+      year: "2022",
+      category: "CAD / 도면",
+      description: "대용량 CAD 도면 웹 뷰어 및 버전별 변경이력 추적 시스템 구축. SmartGeoKit CAD 제품군 적용.",
+      tags: ["CAD", "도면관리", "Web"],
+    },
+    {
+      id: "proj4",
+      title: "AR 현장 점검 시스템",
+      client: "한전KPS",
+      year: "2022",
+      category: "AR / 현장",
+      description: "발전소 설비 AR 오버레이 점검 및 디지털트윈 연계 현장 관리 솔루션. SmartGeoKit AR 적용.",
+      tags: ["AR", "디지털트윈", "현장"],
+    },
+    {
+      id: "proj5",
+      title: "재난안전 통합 모니터링",
+      client: "소방청",
+      year: "2021",
+      category: "재난 / 안전",
+      description: "다중 재해 유형 통합 모니터링 및 대응 의사결정 지원 시스템. SmartGeoKit RMCP 적용.",
+      tags: ["모니터링", "재난", "GIS"],
     },
   ],
   cta: {
