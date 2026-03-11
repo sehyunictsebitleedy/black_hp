@@ -44,11 +44,22 @@ export interface FooterContent {
   twitter: string;
 }
 
+export interface ProjectItem {
+  id: string;
+  title: string;
+  client: string;
+  year: string;
+  category: string;
+  description: string;
+  tags: string[];
+}
+
 export interface SiteContent {
   hero: HeroContent;
   features: Feature[];
   products: Product[];
   process: ProcessStep[];
+  projects: ProjectItem[];
   cta: CTAContent;
   footer: FooterContent;
 }

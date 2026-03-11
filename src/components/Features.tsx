@@ -17,8 +17,8 @@ export default function Features({ features }: { features: Feature[] }) {
   return (
     <section id="about" style={{
       minHeight: "100svh",
-      background: "#080810",
-      borderTop: "1px solid rgba(255,255,255,0.07)",
+      background: "#08080c",
+      borderTop: "1px solid rgba(255,255,255,0.055)",
       display: "flex",
       alignItems: "center",
     }}>
@@ -28,18 +28,18 @@ export default function Features({ features }: { features: Feature[] }) {
         <Reveal style={{
           display: "flex", flexWrap: "wrap",
           alignItems: "flex-end", justifyContent: "space-between",
-          gap: 24, marginBottom: 56,
+          gap: 24, marginBottom: 64,
         }}>
           <div>
-            <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>
+            <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(139,124,248,0.7)", marginBottom: 20 }}>
               Why Sehyun ICT
             </p>
-            <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.035em", wordBreak: "keep-all" }}>
+            <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
               <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>스마터한 IT의</span>
-              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.2)" }}>새로운 기준.</span>
+              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>새로운 기준.</span>
             </h2>
           </div>
-          <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.45)", maxWidth: 260, wordBreak: "keep-all" }}>
+          <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.85, color: "rgba(255,255,255,0.4)", maxWidth: 260, wordBreak: "keep-all", letterSpacing: "0.005em" }}>
             공간정보 기술 기반으로<br />고객 비즈니스에 최적화된<br />솔루션을 제공합니다.
           </p>
         </Reveal>
@@ -48,26 +48,34 @@ export default function Features({ features }: { features: Feature[] }) {
         <Reveal delay={100} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: 1,
-          background: "rgba(255,255,255,0.08)",
-          marginBottom: 1,
+          gap: 12,
+          marginBottom: 12,
         }}>
           {features.map((f) => (
             <div key={f.id} style={{
-              background: "#080810",
-              padding: "40px 36px",
-              transition: "background 0.25s ease",
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              padding: "36px 32px",
+              borderRadius: 3,
+              transition: "background 0.3s, border-color 0.3s",
+              cursor: "default",
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#0e0e1c")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#080810")}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "rgba(139,124,248,0.05)";
+              e.currentTarget.style.borderColor = "rgba(139,124,248,0.22)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
+            }}
             >
-              <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.15em", color: "rgba(255,255,255,0.2)", marginBottom: 32, fontVariantNumeric: "tabular-nums" }}>
+              <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", color: "rgba(255,255,255,0.2)", marginBottom: 36, fontVariantNumeric: "tabular-nums" }}>
                 {f.number}
               </p>
-              <h3 style={{ fontSize: 18, fontWeight: 300, lineHeight: 1.4, letterSpacing: "-0.01em", color: "#fff", marginBottom: 14, wordBreak: "keep-all" }}>
+              <h3 style={{ fontSize: 17, fontWeight: 300, lineHeight: 1.45, letterSpacing: "-0.015em", color: "#fff", marginBottom: 14, wordBreak: "keep-all" }}>
                 {f.title}
               </h3>
-              <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.45)", wordBreak: "keep-all" }}>
+              <p style={{ fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.42)", wordBreak: "keep-all" }}>
                 {f.description}
               </p>
             </div>
@@ -78,18 +86,22 @@ export default function Features({ features }: { features: Feature[] }) {
         <Reveal delay={200} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-          gap: 1,
-          background: "rgba(255,255,255,0.08)",
+          gap: 12,
         }}>
           {STATS.map(s => (
-            <div key={s.l} style={{ background: "#080810", padding: "28px 36px" }}>
+            <div key={s.l} style={{
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              padding: "28px 32px",
+              borderRadius: 3,
+            }}>
               <CountUp
                 to={s.to}
                 suffix={s.suffix}
                 duration={s.duration}
-                style={{ fontSize: "clamp(2rem,3.5vw,3rem)", fontWeight: 200, letterSpacing: "-0.03em", color: "#fff", lineHeight: 1, display: "block", marginBottom: 8 }}
+                style={{ fontSize: "clamp(2rem,3.5vw,3rem)", fontWeight: 200, letterSpacing: "-0.04em", color: "#fff", lineHeight: 1, display: "block", marginBottom: 10 }}
               />
-              <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>
+              <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.26)" }}>
                 {s.l}
               </p>
             </div>

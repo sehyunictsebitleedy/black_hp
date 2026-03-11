@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --bg:   #080810;
-  --bg-2: #0d0d18;
-  --bg-3: #131320;
-  --line: rgba(255,255,255,0.07);
-  --blue: #4a7cf7;
-  --nav:  64px;
+  --bg:     #08080c;
+  --bg-2:   #0d0d15;
+  --bg-3:   #111119;
+  --line:   rgba(255,255,255,0.055);
+  --accent: #8b7cf8;
+  --accent-dim: rgba(139,124,248,0.18);
+  --nav:    64px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,41 +21,52 @@ body {
   overflow-x: hidden;
 }
 
+/* Film grain — subtle but immediately premium */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.038;
+  pointer-events: none;
+  z-index: 9998;
+}
+
 a { text-decoration: none; color: inherit; }
 ::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-thumb { background: #222; }
-::selection { background: rgba(74,124,247,0.22); }
+::-webkit-scrollbar-thumb { background: #1c1c2e; }
+::selection { background: rgba(139,124,248,0.28); }
 
 /* ── Orb keyframes ── */
 @keyframes orb1 {
-  0%,100% { transform: translate(0, 0)   scale(1);    opacity: .55; }
-  33%     { transform: translate(80px,-60px) scale(1.12); opacity: .75; }
-  66%     { transform: translate(-40px,50px) scale(.92); opacity: .45; }
+  0%,100% { transform: translate(0,0)        scale(1);    opacity: .45; }
+  33%     { transform: translate(80px,-60px) scale(1.1);  opacity: .65; }
+  66%     { transform: translate(-40px,50px) scale(.92);  opacity: .38; }
 }
 @keyframes orb2 {
-  0%,100% { transform: translate(0,0)    scale(1);    opacity: .45; }
-  33%     { transform: translate(-70px,80px) scale(1.08); opacity: .65; }
-  66%     { transform: translate(60px,-40px) scale(.95); opacity: .35; }
+  0%,100% { transform: translate(0,0)         scale(1);    opacity: .35; }
+  33%     { transform: translate(-70px,80px)  scale(1.08); opacity: .55; }
+  66%     { transform: translate(60px,-40px)  scale(.95);  opacity: .28; }
 }
 @keyframes orb3 {
-  0%,100% { transform: translate(0,0)    scale(1);    opacity: .35; }
-  50%     { transform: translate(50px,60px)  scale(1.15); opacity: .55; }
+  0%,100% { transform: translate(0,0)      scale(1);    opacity: .25; }
+  50%     { transform: translate(50px,60px) scale(1.15); opacity: .42; }
 }
 @keyframes grid-drift {
-  from { transform: translate(0, 0); }
-  to   { transform: translate(56px, 56px); }
+  from { transform: translate(0,0); }
+  to   { transform: translate(56px,56px); }
 }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Animation classes ── */
-.orb1 { animation: orb1 18s ease-in-out infinite; }
-.orb2 { animation: orb2 22s ease-in-out infinite; }
-.orb3 { animation: orb3 26s ease-in-out infinite; }
-.grid-drift { animation: grid-drift 8s linear infinite; }
+.orb1 { animation: orb1 22s ease-in-out infinite; }
+.orb2 { animation: orb2 28s ease-in-out infinite; }
+.orb3 { animation: orb3 34s ease-in-out infinite; }
+.grid-drift { animation: grid-drift 12s linear infinite; }
 
-.au { opacity:0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
-.d1{animation-delay:.10s} .d2{animation-delay:.20s}
-.d3{animation-delay:.30s} .d4{animation-delay:.40s} .d5{animation-delay:.55s}
+.au { opacity:0; animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+.d1{animation-delay:.1s}  .d2{animation-delay:.22s}
+.d3{animation-delay:.36s} .d4{animation-delay:.5s} .d5{animation-delay:.68s}

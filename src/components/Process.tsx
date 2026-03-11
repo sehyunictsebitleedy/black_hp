@@ -9,8 +9,8 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
   return (
     <section id="business" style={{
       minHeight: "100svh",
-      background: "#0d0d18",
-      borderTop: "1px solid rgba(255,255,255,0.08)",
+      background: "#08080c",
+      borderTop: "1px solid rgba(255,255,255,0.055)",
       display: "flex",
       alignItems: "center",
     }}>
@@ -20,18 +20,18 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
         <Reveal style={{
           display: "flex", flexWrap: "wrap",
           alignItems: "flex-end", justifyContent: "space-between",
-          gap: 24, marginBottom: 56,
+          gap: 24, marginBottom: 64,
         }}>
           <div>
-            <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>
+            <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(139,124,248,0.7)", marginBottom: 20 }}>
               How We Work
             </p>
-            <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.035em", wordBreak: "keep-all" }}>
+            <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
               <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>검증된 프로세스로</span>
-              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.2)" }}>신뢰를 쌓습니다.</span>
+              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>신뢰를 쌓습니다.</span>
             </h2>
           </div>
-          <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.4)", maxWidth: 240, wordBreak: "keep-all" }}>
+          <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.85, color: "rgba(255,255,255,0.38)", maxWidth: 240, wordBreak: "keep-all", letterSpacing: "0.005em" }}>
             요구사항 분석부터 운영까지,<br />단계별로 철저하게 진행합니다.
           </p>
         </Reveal>
@@ -40,39 +40,48 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
         <Reveal delay={100} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: 1,
-          background: "rgba(255,255,255,0.08)",
+          gap: 12,
         }}>
           {steps.map((step) => (
             <div key={step.id} style={{
-              background: "#0d0d18",
-              padding: "40px 32px",
-              transition: "background 0.25s ease",
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              padding: "36px 30px",
+              borderRadius: 3,
+              transition: "background 0.3s, border-color 0.3s",
+              cursor: "default",
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#131326")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#0d0d18")}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "rgba(139,124,248,0.05)";
+              e.currentTarget.style.borderColor = "rgba(139,124,248,0.22)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
+            }}
             >
-              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 48 }}>
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 52 }}>
                 <span style={{
-                  fontSize: "3.5rem", fontWeight: 200, lineHeight: 1,
-                  letterSpacing: "-0.04em", color: "rgba(255,255,255,0.12)",
+                  fontSize: "3.2rem", fontWeight: 200, lineHeight: 1,
+                  letterSpacing: "-0.05em", color: "rgba(255,255,255,0.1)",
                 }}>
                   {step.number}
                 </span>
                 <span style={{
-                  fontSize: 11, padding: "4px 10px",
-                  background: "rgba(255,255,255,0.06)",
-                  color: "rgba(255,255,255,0.4)",
+                  fontSize: 10, padding: "4px 10px",
+                  background: "rgba(139,124,248,0.08)",
+                  border: "1px solid rgba(139,124,248,0.16)",
+                  color: "rgba(139,124,248,0.7)",
                   letterSpacing: "0.06em",
                   borderRadius: 2,
                 }}>
                   {step.detail}
                 </span>
               </div>
-              <h3 style={{ fontSize: 16, fontWeight: 400, lineHeight: 1.4, color: "#fff", marginBottom: 12, wordBreak: "keep-all" }}>
+              <h3 style={{ fontSize: 15, fontWeight: 400, lineHeight: 1.45, color: "#fff", marginBottom: 12, wordBreak: "keep-all", letterSpacing: "-0.01em" }}>
                 {step.title}
               </h3>
-              <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.4)", wordBreak: "keep-all" }}>
+              <p style={{ fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.38)", wordBreak: "keep-all" }}>
                 {step.description}
               </p>
             </div>

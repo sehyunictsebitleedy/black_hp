@@ -16,12 +16,12 @@ const NAV = [
 export default function Footer({ content }: { content: FooterContent }) {
   return (
     <footer style={{
-      background: "#0d0d18",
-      borderTop: "1px solid rgba(255,255,255,0.07)",
+      background: "#08080c",
+      borderTop: "1px solid rgba(255,255,255,0.055)",
     }}>
       <div style={{
         maxWidth: MAX, margin: "0 auto",
-        padding: `28px ${PX}`,
+        padding: `24px ${PX}`,
         display: "flex", flexWrap: "wrap",
         alignItems: "center", justifyContent: "space-between",
         gap: 20,
@@ -29,34 +29,34 @@ export default function Footer({ content }: { content: FooterContent }) {
         {/* Brand */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{
-            width: 24, height: 24,
-            background: "#fff", color: "#000",
+            width: 22, height: 22,
+            background: "#8b7cf8", color: "#fff",
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: 9, fontWeight: 700, letterSpacing: "0.04em",
             clipPath: "polygon(0 0, 82% 0, 100% 18%, 100% 100%, 18% 100%, 0 82%)",
           }}>SI</div>
-          <span style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>{content.studioName}</span>
+          <span style={{ fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.7)" }}>{content.studioName}</span>
         </div>
 
         {/* Nav */}
-        <div style={{ display: "flex", gap: 28 }}>
+        <div style={{ display: "flex", gap: 26 }}>
           {NAV.map(n => (
             <a key={n.l} href={n.h} style={{
-              fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.28)", transition: "color 0.2s",
+              fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.24)", transition: "color 0.2s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.28)")}
+            onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+            onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.24)")}
             >{n.l}</a>
           ))}
         </div>
 
         {/* Right */}
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <Link href="/cms" style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.16)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          <Link href="/cms" style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.14)" }}>
             CMS
           </Link>
-          <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)" }}>
+          <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.16)" }}>
             © {new Date().getFullYear()} {content.studioName}
           </span>
         </div>
