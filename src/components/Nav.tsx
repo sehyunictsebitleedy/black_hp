@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 const LINKS = [
   { ko: "회사소개", en: "About",    href: "#about" },
@@ -71,37 +70,54 @@ export default function Nav() {
       <nav style={S.nav(scrolled)}>
         <div style={S.inner}>
           {/* Logo */}
-          <Link href="/" style={S.logo}>
+          <a href="/" style={S.logo}>
             <div style={S.logoMark}>SI</div>
             <span style={S.logoText}>세현ICT</span>
-          </Link>
+          </a>
 
           {/* Desktop menu */}
-          <div style={{ display: "flex", alignItems: "center", gap: 2 }} className="hidden md:flex">
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }} className="hidden md:flex">
             {LINKS.map(l => (
               <a key={l.en} href={l.href} style={{
-                padding: "8px 20px",
-                fontSize: 11,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.45)",
+                padding: "8px 18px",
+                fontSize: 14,
+                fontWeight: 400,
+                letterSpacing: "0.01em",
+                color: "rgba(255,255,255,0.5)",
                 transition: "color 0.2s",
               }}
               onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
               >
                 {l.ko}
               </a>
             ))}
           </div>
 
-          {/* CTA */}
+          {/* Right actions */}
           <div style={{ display: "flex", alignItems: "center", gap: 16 }} className="hidden md:flex">
-            <Link href="/cms" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
-              CMS
-            </Link>
+            {/* SEbit AI — 추후 링크 연결 */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: 13, fontWeight: 500,
+                letterSpacing: "0.04em",
+                color: "rgba(255,255,255,0.35)",
+                transition: "color 0.2s",
+                display: "flex", alignItems: "center", gap: 5,
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+            >
+              SEbit AI
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{ opacity: 0.5 }}>
+                <path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
             <a href="mailto:asset.manager@sehyunict.com" style={{
-              fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase",
+              fontSize: 13, letterSpacing: "0.02em",
               padding: "8px 18px",
               border: "1px solid rgba(255,255,255,0.12)",
               color: "rgba(255,255,255,0.5)",
