@@ -50,7 +50,7 @@ export default function CTA({ content }: { content: CTAContent }) {
           {lines.map((line, i) => (
             <span key={i} style={{
               display: "block",
-              fontSize: i === 0 ? "6vw" : "clamp(2.4rem,6vw,6rem)",
+              fontSize: i === 0 ? "5vw" : "clamp(2.4rem,5vw,6rem)",
               fontWeight: i === 0 ? 400 : 200,
               lineHeight: 1.0,
               letterSpacing: "-0.04em",

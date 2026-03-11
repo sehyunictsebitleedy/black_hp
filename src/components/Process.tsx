@@ -27,13 +27,11 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
               How We Work
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
-              <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>검증된 프로세스로</span>
+              <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>검증된 프로세스로</span>
               <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>신뢰를 쌓습니다.</span>
             </h2>
           </div>
-          <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.85, color: "rgba(255,255,255,0.38)", maxWidth: 240, wordBreak: "keep-all", letterSpacing: "0.005em" }}>
-            요구사항 분석부터 운영까지,<br />단계별로 철저하게 진행합니다.
-          </p>
+          
         </Reveal>
 
         {/* Steps */}

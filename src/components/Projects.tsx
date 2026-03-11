@@ -38,7 +38,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
               Project
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
-              <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>함께 만든</span>
+              <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>함께 만든</span>
               <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>수행 실적.</span>
             </h2>
           </div>

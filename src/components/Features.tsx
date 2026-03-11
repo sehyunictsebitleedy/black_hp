@@ -35,13 +35,11 @@ export default function Features({ features }: { features: Feature[] }) {
               Why Sehyun ICT
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
-              <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>스마터한 IT의</span>
+              <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>스마트한 IT의</span>
               <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>새로운 기준.</span>
             </h2>
           </div>
-          <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.85, color: "rgba(255,255,255,0.4)", maxWidth: 260, wordBreak: "keep-all", letterSpacing: "0.005em" }}>
-            공간정보 기술 기반으로<br />고객 비즈니스에 최적화된<br />솔루션을 제공합니다.
-          </p>
+        
         </Reveal>
 
         {/* Feature Cards */}

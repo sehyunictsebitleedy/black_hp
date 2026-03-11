@@ -89,7 +89,7 @@ export default function Hero({ content }: { content: HeroContent }) {
           {lines.map((line, i) => (
             <span key={i} className={`au d${i + 1}`} style={{
               display: "block",
-              fontSize: i === 0 ? "6vw" : "clamp(3rem, 7.5vw, 7rem)",
+              fontSize: i === 0 ? "5vw" : "clamp(3rem, 7.5vw, 7rem)",
               fontWeight: i === 0 ? 400 : 200,
               lineHeight: 1.0,
               letterSpacing: "-0.04em",
