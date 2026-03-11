@@ -1,5 +1,6 @@
 "use client";
 import { ProcessStep } from "@/types/cms";
+import Reveal from "./Reveal";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
@@ -16,7 +17,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
       <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%" }}>
 
         {/* Header */}
-        <div style={{
+        <Reveal style={{
           display: "flex", flexWrap: "wrap",
           alignItems: "flex-end", justifyContent: "space-between",
           gap: 24, marginBottom: 56,
@@ -33,10 +34,10 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
           <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.4)", maxWidth: 240, wordBreak: "keep-all" }}>
             요구사항 분석부터 운영까지,<br />단계별로 철저하게 진행합니다.
           </p>
-        </div>
+        </Reveal>
 
         {/* Steps */}
-        <div style={{
+        <Reveal delay={100} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: 1,
@@ -76,7 +77,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
 
       </div>
     </section>

@@ -147,29 +147,10 @@ export default function Hero({ content }: { content: HeroContent }) {
           </div>
         </div>
 
-        {/* Bottom stats */}
-        <div className="au d5" style={{
-          display: "flex", flexWrap: "wrap",
-          alignItems: "center", justifyContent: "space-between",
-          gap: 20, marginTop: 80, paddingTop: 28,
-          borderTop: "1px solid rgba(255,255,255,0.08)",
-        }}>
-          <div style={{ display: "flex", gap: 44 }}>
-            {[
-              { v: "10+",  l: "Years" },
-              { v: "100+", l: "Projects" },
-              { v: "50+",  l: "Clients" },
-            ].map(s => (
-              <div key={s.l} style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span style={{ fontSize: 22, fontWeight: 200, letterSpacing: "-0.02em", color: "#fff" }}>{s.v}</span>
-                <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>{s.l}</span>
-              </div>
-            ))}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 8px rgba(34,197,94,0.8)" }} />
-            <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>Available</span>
-          </div>
+        {/* Available indicator */}
+        <div className="au d5" style={{ marginTop: 60, display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 8px rgba(34,197,94,0.8)" }} />
+          <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>Available</span>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 import { CTAContent } from "@/types/cms";
+import Reveal from "./Reveal";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
@@ -40,6 +41,7 @@ export default function CTA({ content }: { content: CTAContent }) {
 
       <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%", position: "relative" }}>
 
+        <Reveal>
         <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 36 }}>
           Contact Us
         </p>
@@ -114,6 +116,7 @@ export default function CTA({ content }: { content: CTAContent }) {
             </div>
           ))}
         </div>
+        </Reveal>
 
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 import { Feature } from "@/types/cms";
+import Reveal from "./Reveal";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
@@ -23,7 +24,7 @@ export default function Features({ features }: { features: Feature[] }) {
       <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%" }}>
 
         {/* Header */}
-        <div style={{
+        <Reveal style={{
           display: "flex", flexWrap: "wrap",
           alignItems: "flex-end", justifyContent: "space-between",
           gap: 24, marginBottom: 56,
@@ -40,10 +41,10 @@ export default function Features({ features }: { features: Feature[] }) {
           <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.45)", maxWidth: 260, wordBreak: "keep-all" }}>
             공간정보 기술 기반으로<br />고객 비즈니스에 최적화된<br />솔루션을 제공합니다.
           </p>
-        </div>
+        </Reveal>
 
         {/* Feature Cards */}
-        <div style={{
+        <Reveal delay={100} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
           gap: 1,
@@ -70,10 +71,10 @@ export default function Features({ features }: { features: Feature[] }) {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
 
         {/* Stats */}
-        <div style={{
+        <Reveal delay={200} style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
           gap: 1,
@@ -89,7 +90,7 @@ export default function Features({ features }: { features: Feature[] }) {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
 
       </div>
     </section>

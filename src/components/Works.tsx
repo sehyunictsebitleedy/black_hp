@@ -1,5 +1,6 @@
 "use client";
 import { WorkItem } from "@/types/cms";
+import Reveal from "./Reveal";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
@@ -16,7 +17,7 @@ export default function Works({ works }: { works: WorkItem[] }) {
       <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%" }}>
 
         {/* Header */}
-        <div style={{
+        <Reveal style={{
           display: "flex", flexWrap: "wrap",
           alignItems: "flex-end", justifyContent: "space-between",
           gap: 16, marginBottom: 48,
@@ -44,10 +45,10 @@ export default function Works({ works }: { works: WorkItem[] }) {
               <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
-        </div>
+        </Reveal>
 
         {/* List */}
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <Reveal delay={100} style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           {works.map((w, i) => (
             <div key={w.id}
               style={{
@@ -107,7 +108,7 @@ export default function Works({ works }: { works: WorkItem[] }) {
               </span>
             </div>
           ))}
-        </div>
+        </Reveal>
 
       </div>
     </section>
