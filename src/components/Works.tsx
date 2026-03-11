@@ -1,11 +1,17 @@
 "use client";
+import { useState } from "react";
 import { Product } from "@/types/cms";
 import Reveal from "./Reveal";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
+const INITIAL_COUNT = 4;
 
 export default function Works({ products }: { products: Product[] }) {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? products : products.slice(0, INITIAL_COUNT);
+  const hasMore = products.length > INITIAL_COUNT;
+
   return (
     <section id="products" style={{
       minHeight: "100svh",
@@ -49,7 +55,7 @@ export default function Works({ products }: { products: Product[] }) {
 
         {/* List */}
         <Reveal delay={100} style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-          {products.map((w, i) => (
+          {visible.map((w, i) => (
             <div key={w.id}
               style={{
                 display: "flex", alignItems: "center", gap: 24,
@@ -108,6 +114,28 @@ export default function Works({ products }: { products: Product[] }) {
               </span>
             </div>
           ))}
+
+          {/* More / Less button */}
+          {hasMore && (
+            <button
+              onClick={() => setShowAll(v => !v)}
+              style={{
+                display: "flex", alignItems: "center", gap: 8,
+                marginTop: 28, fontSize: 11, fontWeight: 500,
+                letterSpacing: "0.14em", textTransform: "uppercase",
+                color: "rgba(255,255,255,0.35)",
+                background: "transparent", border: "none", cursor: "pointer",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+            >
+              {showAll ? "접기" : `+ ${products.length - INITIAL_COUNT}개 더 보기`}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: showAll ? "rotate(180deg)" : "none", transition: "transform 0.3s" }}>
+                <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
         </Reveal>
 
       </div>
