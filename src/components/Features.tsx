@@ -1,15 +1,16 @@
 "use client";
 import { Feature } from "@/types/cms";
 import Reveal from "./Reveal";
+import CountUp from "./CountUp";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
 
 const STATS = [
-  { v: "2015", l: "설립년도" },
-  { v: "10+",  l: "업력" },
-  { v: "100+", l: "수행 프로젝트" },
-  { v: "50+",  l: "파트너사" },
+  { to: 2015, suffix: "",  l: "설립년도", duration: 2000 },
+  { to: 10,   suffix: "+", l: "업력",     duration: 1400 },
+  { to: 100,  suffix: "+", l: "수행 프로젝트", duration: 1600 },
+  { to: 50,   suffix: "+", l: "파트너사",  duration: 1200 },
 ];
 
 export default function Features({ features }: { features: Feature[] }) {
@@ -33,9 +34,9 @@ export default function Features({ features }: { features: Feature[] }) {
             <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>
               Why Sehyun ICT
             </p>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 300, lineHeight: 1.05, letterSpacing: "-0.025em", wordBreak: "keep-all", color: "#fff" }}>
-              스마터한 IT의<br />
-              <span style={{ color: "rgba(255,255,255,0.2)" }}>새로운 기준.</span>
+            <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.035em", wordBreak: "keep-all" }}>
+              <span style={{ display: "block", fontSize: "8vw", fontWeight: 700, color: "#fff" }}>스마터한 IT의</span>
+              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.2)" }}>새로운 기준.</span>
             </h2>
           </div>
           <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.45)", maxWidth: 260, wordBreak: "keep-all" }}>
@@ -82,9 +83,12 @@ export default function Features({ features }: { features: Feature[] }) {
         }}>
           {STATS.map(s => (
             <div key={s.l} style={{ background: "#080810", padding: "28px 36px" }}>
-              <p style={{ fontSize: "clamp(2rem,3.5vw,3rem)", fontWeight: 200, letterSpacing: "-0.03em", color: "#fff", lineHeight: 1, marginBottom: 8 }}>
-                {s.v}
-              </p>
+              <CountUp
+                to={s.to}
+                suffix={s.suffix}
+                duration={s.duration}
+                style={{ fontSize: "clamp(2rem,3.5vw,3rem)", fontWeight: 200, letterSpacing: "-0.03em", color: "#fff", lineHeight: 1, display: "block", marginBottom: 8 }}
+              />
               <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>
                 {s.l}
               </p>

@@ -26,9 +26,9 @@ export default function Works({ works }: { works: WorkItem[] }) {
             <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>
               SmartGeoKit Series
             </p>
-            <h2 style={{ fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 300, lineHeight: 1.05, letterSpacing: "-0.025em", color: "#fff", wordBreak: "keep-all" }}>
-              공간정보를<br />
-              <span style={{ color: "rgba(255,255,255,0.2)" }}>다루는 방법.</span>
+            <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.035em", wordBreak: "keep-all" }}>
+              <span style={{ display: "block", fontSize: "8vw", fontWeight: 700, color: "#fff" }}>공간정보를</span>
+              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.2)" }}>다루는 방법.</span>
             </h2>
           </div>
           <a href="#contact" style={{
