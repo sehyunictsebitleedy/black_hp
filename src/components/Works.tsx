@@ -27,7 +27,7 @@ export default function Works({ works }: { works: WorkItem[] }) {
               SmartGeoKit Series
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.035em", wordBreak: "keep-all" }}>
-              <span style={{ display: "block", fontSize: "8vw", fontWeight: 700, color: "#fff" }}>공간정보를</span>
+              <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>공간정보를</span>
               <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.2)" }}>다루는 방법.</span>
             </h2>
           </div>

@@ -35,7 +35,7 @@ export default function Features({ features }: { features: Feature[] }) {
               Why Sehyun ICT
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.035em", wordBreak: "keep-all" }}>
-              <span style={{ display: "block", fontSize: "8vw", fontWeight: 700, color: "#fff" }}>스마터한 IT의</span>
+              <span style={{ display: "block", fontSize: "6vw", fontWeight: 400, color: "#fff" }}>스마터한 IT의</span>
               <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.2)" }}>새로운 기준.</span>
             </h2>
           </div>
