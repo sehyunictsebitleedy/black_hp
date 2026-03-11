@@ -1,3 +1,4 @@
+"use client";
 import { Feature } from "@/types/cms";
 
 const PX = "clamp(24px,5vw,80px)";
