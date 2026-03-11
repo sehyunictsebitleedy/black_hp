@@ -15,8 +15,8 @@ export default function Features({ features }: { features: Feature[] }) {
   return (
     <section id="about" style={{
       minHeight: "100svh",
-      background: "#0a0a0a",
-      borderTop: "1px solid rgba(255,255,255,0.08)",
+      background: "#080810",
+      borderTop: "1px solid rgba(255,255,255,0.07)",
       display: "flex",
       alignItems: "center",
     }}>
@@ -52,12 +52,12 @@ export default function Features({ features }: { features: Feature[] }) {
         }}>
           {features.map((f) => (
             <div key={f.id} style={{
-              background: "#0a0a0a",
+              background: "#080810",
               padding: "40px 36px",
               transition: "background 0.25s ease",
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#111")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#0a0a0a")}
+            onMouseEnter={e => (e.currentTarget.style.background = "#0e0e1c")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#080810")}
             >
               <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.15em", color: "rgba(255,255,255,0.2)", marginBottom: 32, fontVariantNumeric: "tabular-nums" }}>
                 {f.number}
@@ -80,7 +80,7 @@ export default function Features({ features }: { features: Feature[] }) {
           background: "rgba(255,255,255,0.08)",
         }}>
           {STATS.map(s => (
-            <div key={s.l} style={{ background: "#0a0a0a", padding: "28px 36px" }}>
+            <div key={s.l} style={{ background: "#080810", padding: "28px 36px" }}>
               <p style={{ fontSize: "clamp(2rem,3.5vw,3rem)", fontWeight: 200, letterSpacing: "-0.03em", color: "#fff", lineHeight: 1, marginBottom: 8 }}>
                 {s.v}
               </p>

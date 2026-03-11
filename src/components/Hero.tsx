@@ -10,7 +10,7 @@ export default function Hero({ content }: { content: HeroContent }) {
   return (
     <section style={{
       minHeight: "100svh",
-      background: "#0a0a0a",
+      background: "#080810",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -18,43 +18,74 @@ export default function Hero({ content }: { content: HeroContent }) {
       overflow: "hidden",
       paddingTop: 64,
     }}>
-      {/* Glow blob */}
-      <div className="ag" style={{
-        position: "absolute",
-        width: 600, height: 600,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(74,124,247,0.12) 0%, transparent 68%)",
-        top: "0%", right: "-5%",
-        filter: "blur(80px)",
-        pointerEvents: "none",
-      }} />
 
-      <div style={{
-        maxWidth: MAX, margin: "0 auto",
-        padding: `72px ${PX}`,
-        width: "100%",
-      }}>
+      {/* ── Aurora orb layer ── */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden" }}>
+
+        {/* Orb 1 — Blue (top right) */}
+        <div className="orb1" style={{
+          position: "absolute",
+          width: 700, height: 700, borderRadius: "50%",
+          background: "radial-gradient(circle at center, rgba(74,124,247,0.38) 0%, rgba(74,124,247,0.12) 40%, transparent 72%)",
+          top: "-15%", right: "-10%",
+          filter: "blur(72px)",
+        }} />
+
+        {/* Orb 2 — Purple (bottom left) */}
+        <div className="orb2" style={{
+          position: "absolute",
+          width: 600, height: 600, borderRadius: "50%",
+          background: "radial-gradient(circle at center, rgba(139,92,246,0.35) 0%, rgba(139,92,246,0.1) 42%, transparent 72%)",
+          bottom: "-10%", left: "-8%",
+          filter: "blur(80px)",
+        }} />
+
+        {/* Orb 3 — Teal (center-ish) */}
+        <div className="orb3" style={{
+          position: "absolute",
+          width: 500, height: 500, borderRadius: "50%",
+          background: "radial-gradient(circle at center, rgba(20,184,166,0.2) 0%, rgba(20,184,166,0.06) 45%, transparent 72%)",
+          top: "30%", left: "35%",
+          filter: "blur(90px)",
+        }} />
+
+        {/* Grid overlay */}
+        <div style={{
+          position: "absolute", inset: "-56px",
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: "56px 56px",
+        }} className="grid-drift" />
+
+        {/* Vignette — darken edges so text stays readable */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(8,8,16,0.85) 100%)",
+        }} />
+      </div>
+
+      {/* ── Content ── */}
+      <div style={{ position: "relative", maxWidth: MAX, margin: "0 auto", padding: `72px ${PX}`, width: "100%" }}>
+
         {/* Eyebrow */}
-        <div className="au" style={{
-          display: "flex", alignItems: "center", gap: 8,
-          marginBottom: 40,
-        }}>
+        <div className="au" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 44 }}>
           <span style={{
             width: 6, height: 6, borderRadius: "50%",
-            background: "var(--blue)",
-            boxShadow: "0 0 8px rgba(74,124,247,0.6)",
+            background: "#4a7cf7",
+            boxShadow: "0 0 10px rgba(74,124,247,0.8), 0 0 20px rgba(74,124,247,0.4)",
           }} />
           <span style={{
-            fontSize: 11, fontWeight: 500,
-            letterSpacing: "0.18em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.5)",
+            fontSize: 11, fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase",
+            color: "rgba(255,255,255,0.55)",
           }}>
             {content.eyebrow}
           </span>
         </div>
 
         {/* Headline */}
-        <h1 style={{ marginBottom: 36 }}>
+        <h1 style={{ marginBottom: 40 }}>
           {lines.map((line, i) => (
             <span key={i} className={`au d${i + 1}`} style={{
               display: "block",
@@ -63,7 +94,7 @@ export default function Hero({ content }: { content: HeroContent }) {
               lineHeight: 1.0,
               letterSpacing: "-0.035em",
               wordBreak: "keep-all",
-              color: i === 0 ? "#fff" : "rgba(255,255,255,0.22)",
+              color: i === 0 ? "#ffffff" : "rgba(255,255,255,0.2)",
             }}>
               {line}
             </span>
@@ -73,7 +104,7 @@ export default function Hero({ content }: { content: HeroContent }) {
         {/* Sub + CTA */}
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", gap: 40 }}>
           <p className="au d3" style={{
-            fontSize: 14, fontWeight: 300, lineHeight: 1.8,
+            fontSize: 14, fontWeight: 300, lineHeight: 1.85,
             color: "rgba(255,255,255,0.5)",
             maxWidth: 300, wordBreak: "keep-all",
           }}>
@@ -87,10 +118,10 @@ export default function Hero({ content }: { content: HeroContent }) {
               background: "#fff", color: "#000",
               fontSize: 12, fontWeight: 500,
               letterSpacing: "0.08em", textTransform: "uppercase",
-              borderRadius: 2, transition: "opacity 0.2s",
+              borderRadius: 2, transition: "opacity 0.2s, transform 0.2s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "none"; }}
             >
               {content.ctaPrimary}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -100,14 +131,16 @@ export default function Hero({ content }: { content: HeroContent }) {
             <a href="#products" style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               padding: "13px 28px",
-              background: "transparent", color: "rgba(255,255,255,0.5)",
+              background: "rgba(255,255,255,0.06)",
+              color: "rgba(255,255,255,0.6)",
               fontSize: 12, fontWeight: 400,
               letterSpacing: "0.08em", textTransform: "uppercase",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.12)",
               borderRadius: 2, transition: "all 0.2s",
+              backdropFilter: "blur(8px)",
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.24)"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.1)"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
             >
               {content.ctaSecondary}
             </a>
@@ -118,25 +151,24 @@ export default function Hero({ content }: { content: HeroContent }) {
         <div className="au d5" style={{
           display: "flex", flexWrap: "wrap",
           alignItems: "center", justifyContent: "space-between",
-          gap: 20, marginTop: 72,
-          paddingTop: 24,
+          gap: 20, marginTop: 80, paddingTop: 28,
           borderTop: "1px solid rgba(255,255,255,0.08)",
         }}>
-          <div style={{ display: "flex", gap: 40 }}>
+          <div style={{ display: "flex", gap: 44 }}>
             {[
-              { v: "10+", l: "Years" },
+              { v: "10+",  l: "Years" },
               { v: "100+", l: "Projects" },
-              { v: "50+", l: "Clients" },
+              { v: "50+",  l: "Clients" },
             ].map(s => (
               <div key={s.l} style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span style={{ fontSize: 20, fontWeight: 200, letterSpacing: "-0.02em", color: "#fff" }}>{s.v}</span>
-                <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>{s.l}</span>
+                <span style={{ fontSize: 22, fontWeight: 200, letterSpacing: "-0.02em", color: "#fff" }}>{s.v}</span>
+                <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>{s.l}</span>
               </div>
             ))}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
-            <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>Available</span>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 8px rgba(34,197,94,0.8)" }} />
+            <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>Available</span>
           </div>
         </div>
       </div>

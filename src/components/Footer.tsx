@@ -15,8 +15,8 @@ const NAV = [
 export default function Footer({ content }: { content: FooterContent }) {
   return (
     <footer style={{
-      background: "#111",
-      borderTop: "1px solid rgba(255,255,255,0.08)",
+      background: "#0d0d18",
+      borderTop: "1px solid rgba(255,255,255,0.07)",
     }}>
       <div style={{
         maxWidth: MAX, margin: "0 auto",

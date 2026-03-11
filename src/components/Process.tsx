@@ -8,7 +8,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
   return (
     <section id="business" style={{
       minHeight: "100svh",
-      background: "#111111",
+      background: "#0d0d18",
       borderTop: "1px solid rgba(255,255,255,0.08)",
       display: "flex",
       alignItems: "center",
@@ -44,12 +44,12 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
         }}>
           {steps.map((step) => (
             <div key={step.id} style={{
-              background: "#111",
+              background: "#0d0d18",
               padding: "40px 32px",
               transition: "background 0.25s ease",
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#161616")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#111")}
+            onMouseEnter={e => (e.currentTarget.style.background = "#131326")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#0d0d18")}
             >
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 48 }}>
                 <span style={{

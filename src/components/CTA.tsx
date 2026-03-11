@@ -15,19 +15,26 @@ export default function CTA({ content }: { content: CTAContent }) {
   return (
     <section id="contact" style={{
       minHeight: "100svh",
-      background: "#0a0a0a",
-      borderTop: "1px solid rgba(255,255,255,0.08)",
+      background: "#080810",
+      borderTop: "1px solid rgba(255,255,255,0.07)",
       display: "flex",
       alignItems: "center",
       position: "relative",
       overflow: "hidden",
     }}>
-      {/* Glow */}
-      <div style={{
+      {/* Orbs */}
+      <div className="orb2" style={{
         position: "absolute",
         width: 700, height: 700, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(74,124,247,0.07) 0%, transparent 65%)",
-        top: "50%", left: "50%", transform: "translate(-50%,-50%)",
+        background: "radial-gradient(circle, rgba(139,92,246,0.25) 0%, rgba(74,124,247,0.1) 45%, transparent 70%)",
+        top: "10%", right: "-15%",
+        filter: "blur(90px)", pointerEvents: "none",
+      }} />
+      <div className="orb3" style={{
+        position: "absolute",
+        width: 500, height: 500, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(74,124,247,0.2) 0%, transparent 65%)",
+        bottom: "5%", left: "-10%",
         filter: "blur(80px)", pointerEvents: "none",
       }} />
 
