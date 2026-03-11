@@ -6,10 +6,11 @@ const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
 
 const NAV = [
-  { l: "회사소개", h: "#about" },
-  { l: "사업영역", h: "#business" },
-  { l: "제품",     h: "#products" },
-  { l: "문의",     h: "#contact" },
+  { l: "About",      h: "#about" },
+  { l: "Business",   h: "#business" },
+  { l: "Project",    h: "#project" },
+  { l: "Product",    h: "#products" },
+  { l: "Contact Us", h: "#contact" },
 ];
 
 export default function Footer({ content }: { content: FooterContent }) {

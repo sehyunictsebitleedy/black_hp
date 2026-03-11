@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 
 const LINKS = [
-  { ko: "회사소개", en: "About",    href: "#about" },
-  { ko: "사업영역", en: "Business", href: "#business" },
-  { ko: "제품",     en: "Products", href: "#products" },
-  { ko: "문의",     en: "Contact",  href: "#contact" },
+  { ko: "About",      href: "#about" },
+  { ko: "Business",   href: "#business" },
+  { ko: "Project",    href: "#project" },
+  { ko: "Product",    href: "#products" },
+  { ko: "Contact Us", href: "#contact" },
 ];
 
 const S = {
@@ -78,7 +79,7 @@ export default function Nav() {
           {/* Desktop menu */}
           <div style={{ display: "flex", alignItems: "center", gap: 4 }} className="hidden md:flex">
             {LINKS.map(l => (
-              <a key={l.en} href={l.href} style={{
+              <a key={l.ko} href={l.href} style={{
                 padding: "8px 18px",
                 fontSize: 14,
                 fontWeight: 400,
@@ -163,7 +164,7 @@ export default function Nav() {
         transition: "opacity 0.3s ease",
       }} className="md:hidden">
         {LINKS.map((l, i) => (
-          <a key={l.en} href={l.href} onClick={() => setOpen(false)} style={{
+          <a key={l.ko} href={l.href} onClick={() => setOpen(false)} style={{
             padding: "20px 0",
             borderBottom: "1px solid rgba(255,255,255,0.07)",
             display: "flex", alignItems: "center", justifyContent: "space-between",
