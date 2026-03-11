@@ -1,60 +1,76 @@
 import { ProcessStep } from "@/types/cms";
 
-interface Props { steps: ProcessStep[]; }
+const PX = "clamp(24px,5vw,80px)";
+const MAX = 1280;
 
-export default function Process({ steps }: Props) {
+export default function Process({ steps }: { steps: ProcessStep[] }) {
   return (
-    <section
-      id="business"
-      className="relative flex flex-col justify-center"
-      style={{ minHeight: "100svh", background: "var(--surface)", borderTop: "1px solid var(--border)" }}
-    >
-      <div className="max-w-[1380px] mx-auto px-6 md:px-16 w-full py-20">
+    <section id="business" style={{
+      minHeight: "100svh",
+      background: "#111111",
+      borderTop: "1px solid rgba(255,255,255,0.08)",
+      display: "flex",
+      alignItems: "center",
+    }}>
+      <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%" }}>
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div style={{
+          display: "flex", flexWrap: "wrap",
+          alignItems: "flex-end", justifyContent: "space-between",
+          gap: 24, marginBottom: 56,
+        }}>
           <div>
-            <p className="label mb-4">How We Work</p>
-            <h2 className="display-lg" style={{ color: "var(--text-primary)" }}>
+            <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 16 }}>
+              How We Work
+            </p>
+            <h2 style={{ fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 300, lineHeight: 1.05, letterSpacing: "-0.025em", color: "#fff", wordBreak: "keep-all" }}>
               검증된 프로세스로<br />
-              <span style={{ color: "var(--text-tertiary)" }}>신뢰를 쌓습니다.</span>
+              <span style={{ color: "rgba(255,255,255,0.2)" }}>신뢰를 쌓습니다.</span>
             </h2>
           </div>
-          <p className="text-sm leading-loose md:text-right"
-            style={{ color: "var(--text-secondary)", fontWeight: 300, maxWidth: 260, wordBreak: "keep-all" }}>
+          <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.75, color: "rgba(255,255,255,0.4)", maxWidth: 240, wordBreak: "keep-all" }}>
             요구사항 분석부터 운영까지,<br />단계별로 철저하게 진행합니다.
           </p>
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "var(--border)" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: 1,
+          background: "rgba(255,255,255,0.08)",
+        }}>
           {steps.map((step) => (
-            <div
-              key={step.id}
-              className="group p-10 card-hover"
-              style={{ background: "var(--surface)" }}
+            <div key={step.id} style={{
+              background: "#111",
+              padding: "40px 32px",
+              transition: "background 0.25s ease",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = "#161616")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#111")}
             >
-              <div className="flex items-start justify-between mb-12">
-                <span
-                  className="font-light leading-none"
-                  style={{ fontSize: "3.5rem", color: "var(--text-tertiary)", letterSpacing: "-0.04em" }}
-                >
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 48 }}>
+                <span style={{
+                  fontSize: "3.5rem", fontWeight: 200, lineHeight: 1,
+                  letterSpacing: "-0.04em", color: "rgba(255,255,255,0.12)",
+                }}>
                   {step.number}
                 </span>
-                <span
-                  className="text-xs px-2.5 py-1 rounded-sm"
-                  style={{ background: "var(--surface-3)", color: "var(--text-secondary)", letterSpacing: "0.05em" }}
-                >
+                <span style={{
+                  fontSize: 11, padding: "4px 10px",
+                  background: "rgba(255,255,255,0.06)",
+                  color: "rgba(255,255,255,0.4)",
+                  letterSpacing: "0.06em",
+                  borderRadius: 2,
+                }}>
                   {step.detail}
                 </span>
               </div>
-              <h3
-                className="text-base font-light mb-3 tracking-tight group-hover:text-white transition-colors duration-300"
-                style={{ color: "var(--text-primary)", wordBreak: "keep-all" }}
-              >
+              <h3 style={{ fontSize: 16, fontWeight: 400, lineHeight: 1.4, color: "#fff", marginBottom: 12, wordBreak: "keep-all" }}>
                 {step.title}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)", fontWeight: 300, wordBreak: "keep-all" }}>
+              <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.7, color: "rgba(255,255,255,0.4)", wordBreak: "keep-all" }}>
                 {step.description}
               </p>
             </div>

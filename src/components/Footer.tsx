@@ -1,107 +1,63 @@
 "use client";
-
 import { FooterContent } from "@/types/cms";
 import Link from "next/link";
 
-interface Props { content: FooterContent; }
+const PX = "clamp(24px,5vw,80px)";
+const MAX = 1280;
 
-export default function Footer({ content }: Props) {
+const NAV = [
+  { l: "회사소개", h: "#about" },
+  { l: "사업영역", h: "#business" },
+  { l: "제품",     h: "#products" },
+  { l: "문의",     h: "#contact" },
+];
+
+export default function Footer({ content }: { content: FooterContent }) {
   return (
-    <footer style={{ background: "var(--surface)", borderTop: "1px solid var(--border)" }}>
-      <div className="max-w-[1380px] mx-auto px-6 md:px-10 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
-
-          {/* Brand col */}
-          <div className="md:col-span-4">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div
-                className="w-7 h-7 flex items-center justify-center text-[10px] font-bold shrink-0"
-                style={{
-                  background: "var(--text-primary)",
-                  color: "var(--bg)",
-                  clipPath: "polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%)",
-                }}
-              >
-                SI
-              </div>
-              <span className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
-                {content.studioName}
-              </span>
-            </div>
-            <p className="text-sm leading-relaxed mb-6"
-              style={{ color: "var(--text-secondary)", maxWidth: 260, fontWeight: 300, wordBreak: "keep-all" }}>
-              {content.tagline}
-            </p>
-            <a href={`mailto:${content.email}`}
-              className="text-xs transition-colors duration-200"
-              style={{ color: "var(--text-secondary)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
-            >
-              {content.email}
-            </a>
-          </div>
-
-          {/* Links */}
-          <div className="md:col-span-3 md:col-start-6">
-            <p className="label mb-5">Navigate</p>
-            <div className="flex flex-col gap-3">
-              {[
-                { label: "회사소개", href: "#about" },
-                { label: "사업영역", href: "#business" },
-                { label: "제품", href: "#products" },
-                { label: "문의", href: "#contact" },
-              ].map((item) => (
-                <a key={item.label} href={item.href}
-                  className="text-sm transition-colors duration-200"
-                  style={{ color: "var(--text-secondary)", fontWeight: 300 }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact info */}
-          <div className="md:col-span-4 md:col-start-9">
-            <p className="label mb-5">Contact</p>
-            <div className="flex flex-col gap-3">
-              <div>
-                <p className="num-accent mb-1">Tel</p>
-                <p className="text-sm" style={{ color: "var(--text-secondary)", fontWeight: 300 }}>
-                  {content.instagram}
-                </p>
-              </div>
-              <div>
-                <p className="num-accent mb-1">Address</p>
-                <p className="text-sm" style={{ color: "var(--text-secondary)", fontWeight: 300, wordBreak: "keep-all" }}>
-                  경기도 화성시 동탄기흥로 557<br />금강펜토리움 IT타워 1901호
-                </p>
-              </div>
-            </div>
-          </div>
+    <footer style={{
+      background: "#111",
+      borderTop: "1px solid rgba(255,255,255,0.08)",
+    }}>
+      <div style={{
+        maxWidth: MAX, margin: "0 auto",
+        padding: `28px ${PX}`,
+        display: "flex", flexWrap: "wrap",
+        alignItems: "center", justifyContent: "space-between",
+        gap: 20,
+      }}>
+        {/* Brand */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{
+            width: 24, height: 24,
+            background: "#fff", color: "#000",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 9, fontWeight: 700, letterSpacing: "0.04em",
+            clipPath: "polygon(0 0, 82% 0, 100% 18%, 100% 100%, 18% 100%, 0 82%)",
+          }}>SI</div>
+          <span style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>{content.studioName}</span>
         </div>
 
-        {/* Bottom bar */}
-        <div
-          className="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-8"
-          style={{ borderTop: "1px solid var(--border)" }}
-        >
-          <span className="label">
-            © {new Date().getFullYear()} {content.studioName}. All rights reserved.
+        {/* Nav */}
+        <div style={{ display: "flex", gap: 28 }}>
+          {NAV.map(n => (
+            <a key={n.l} href={n.h} style={{
+              fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.28)", transition: "color 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+            onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.28)")}
+            >{n.l}</a>
+          ))}
+        </div>
+
+        {/* Right */}
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <Link href="/cms" style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.16)" }}>
+            CMS
+          </Link>
+          <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)" }}>
+            © {new Date().getFullYear()} {content.studioName}
           </span>
-          <div className="flex items-center gap-6">
-            <Link href="/cms" className="label transition-colors"
-              style={{ color: "var(--text-tertiary)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-tertiary)")}
-            >
-              CMS
-            </Link>
-            <span className="label" style={{ cursor: "pointer" }}>개인정보처리방침</span>
-          </div>
         </div>
       </div>
     </footer>
