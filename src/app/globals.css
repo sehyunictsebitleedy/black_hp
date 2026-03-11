@@ -67,6 +67,13 @@ a { text-decoration: none; color: inherit; }
 .orb3 { animation: orb3 34s ease-in-out infinite; }
 .grid-drift { animation: grid-drift 12s linear infinite; }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 28s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
 .au { opacity:0; animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards; }
 .d1{animation-delay:.1s}  .d2{animation-delay:.22s}
 .d3{animation-delay:.36s} .d4{animation-delay:.5s} .d5{animation-delay:.68s}

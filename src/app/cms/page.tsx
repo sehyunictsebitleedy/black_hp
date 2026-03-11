@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { SiteContent, Feature, Product, ProcessStep, ProjectItem } from "@/types/cms";
+import { SiteContent, Feature, Product, ProcessStep, ProjectItem, ClientItem } from "@/types/cms";
 import { loadContent, saveContent, resetContent, defaultContent } from "@/lib/cms-store";
 
-type Section = "overview" | "hero" | "features" | "products" | "process" | "projects" | "cta" | "footer";
+type Section = "overview" | "hero" | "features" | "products" | "process" | "projects" | "clients" | "cta" | "footer";
 
 // ── Design tokens ──────────────────────────────────────────────
 const T = {
@@ -36,6 +36,7 @@ const NAV_ITEMS: { id: Section; label: string; desc: string; icon: React.ReactNo
   { id: "products",  label: "Products",  desc: "SmartGeoKit",     icon: <BoxIcon /> },
   { id: "process",   label: "Business",  desc: "업무 프로세스",   icon: <FlowIcon /> },
   { id: "projects",  label: "Projects",  desc: "수행 실적",       icon: <FolderIcon /> },
+  { id: "clients",   label: "Clients",   desc: "협력사·고객사",   icon: <UsersIcon /> },
   { id: "cta",       label: "Contact",   desc: "문의 섹션",       icon: <MailIcon /> },
   { id: "footer",    label: "Footer",    desc: "푸터 정보",       icon: <FooterIcon /> },
 ];
@@ -54,18 +55,147 @@ function ChevronUp()  { return <svg width="12" height="12" viewBox="0 0 12 12" f
 function PlusIcon()   { return <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>; }
 function TrashIcon()  { return <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 3.5h9M5 3.5V2.5h3v1M4 3.5l.5 7h4l.5-7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 function ArrowRight() { return <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
+function UsersIcon()  { return <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="5" cy="4.5" r="2.5" stroke="currentColor" strokeWidth="1.2"/><path d="M1 12c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><circle cx="10.5" cy="4.5" r="2" stroke="currentColor" strokeWidth="1.2"/><path d="M12.5 12c0-1.7-1.3-3-3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>; }
 function CheckIcon()  { return <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 function BackIcon()   { return <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 6H2M5 3L2 6l3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 function ExternalIcon(){ return <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M4 2H2a1 1 0 00-1 1v5a1 1 0 001 1h5a1 1 0 001-1V6M6 1h3v3M5 5L9 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 
+// ── Auth ───────────────────────────────────────────────────────
+const CMS_PASSWORD = "sehyun2025!";
+const SESSION_KEY  = "cms_auth";
+
+function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
+  const [pw, setPw] = useState("");
+  const [error, setError] = useState(false);
+  const [shake, setShake] = useState(false);
+
+  const submit = () => {
+    if (pw === CMS_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      onSuccess();
+    } else {
+      setError(true);
+      setShake(true);
+      setPw("");
+      setTimeout(() => setShake(false), 600);
+    }
+  };
+
+  return (
+    <div style={{
+      minHeight: "100svh", display: "flex", alignItems: "center", justifyContent: "center",
+      background: T.bg, position: "relative", overflow: "hidden",
+    }}>
+      {/* Background orb */}
+      <div style={{
+        position: "absolute", width: 600, height: 600, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(139,124,248,0.12) 0%, transparent 65%)",
+        top: "50%", left: "50%", transform: "translate(-50%,-50%)",
+        filter: "blur(80px)", pointerEvents: "none",
+      }} />
+
+      <div style={{
+        position: "relative", width: "100%", maxWidth: 360,
+        padding: "0 24px",
+        animation: shake ? "shake 0.5s cubic-bezier(.36,.07,.19,.97)" : undefined,
+      }}>
+        {/* Logo */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 40 }}>
+          <div style={{
+            width: 32, height: 32,
+            background: T.accent, color: "#fff",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 11, fontWeight: 700, letterSpacing: "0.04em",
+            clipPath: "polygon(0 0, 82% 0, 100% 18%, 100% 100%, 18% 100%, 0 82%)",
+          }}>SI</div>
+          <div>
+            <p style={{ fontSize: 13, fontWeight: 600, color: T.t1, lineHeight: 1.2 }}>세현ICT</p>
+            <p style={{ fontSize: 10, color: T.t3, letterSpacing: "0.08em" }}>CMS Admin</p>
+          </div>
+        </div>
+
+        <h1 style={{ fontSize: 22, fontWeight: 300, letterSpacing: "-0.03em", color: T.t1, marginBottom: 8 }}>
+          관리자 로그인
+        </h1>
+        <p style={{ fontSize: 12, color: T.t3, fontWeight: 300, marginBottom: 32 }}>
+          계속하려면 비밀번호를 입력하세요.
+        </p>
+
+        <div style={{ marginBottom: 12 }}>
+          <input
+            type="password"
+            value={pw}
+            placeholder="비밀번호"
+            autoFocus
+            onChange={e => { setPw(e.target.value); setError(false); }}
+            onKeyDown={e => e.key === "Enter" && submit()}
+            style={{
+              width: "100%",
+              background: T.inputBg,
+              border: `1px solid ${error ? "rgba(239,68,68,0.5)" : T.inputBorder}`,
+              borderRadius: 6,
+              color: T.t1,
+              fontSize: 14,
+              padding: "12px 16px",
+              outline: "none",
+              fontFamily: "inherit",
+              letterSpacing: "0.05em",
+              transition: "border-color 0.2s",
+            }}
+            onFocus={e => { if (!error) e.currentTarget.style.borderColor = T.accentGlow; }}
+            onBlur={e => { if (!error) e.currentTarget.style.borderColor = T.inputBorder; }}
+          />
+          {error && (
+            <p style={{ fontSize: 11, color: "#ef4444", marginTop: 8, letterSpacing: "0.02em" }}>
+              비밀번호가 올바르지 않습니다.
+            </p>
+          )}
+        </div>
+
+        <button
+          onClick={submit}
+          style={{
+            width: "100%",
+            padding: "12px",
+            background: T.accent, color: "#fff",
+            border: "none", borderRadius: 6,
+            fontSize: 13, fontWeight: 500, letterSpacing: "0.06em",
+            cursor: "pointer",
+            transition: "opacity 0.2s, transform 0.2s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "none"; }}
+        >
+          로그인
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes shake {
+          10%,90%  { transform: translateX(-3px); }
+          20%,80%  { transform: translateX(5px); }
+          30%,50%,70% { transform: translateX(-6px); }
+          40%,60%  { transform: translateX(6px); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ── Main ───────────────────────────────────────────────────────
 export default function CmsPage() {
+  const [authed, setAuthed] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>("overview");
   const [content, setContent] = useState<SiteContent>(defaultContent);
   const [saved, setSaved] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
 
-  useEffect(() => { setContent(loadContent()); }, []);
+  useEffect(() => {
+    if (sessionStorage.getItem(SESSION_KEY) === "1") setAuthed(true);
+    setContent(loadContent());
+  }, []);
+
+  if (!authed) return <LoginScreen onSuccess={() => setAuthed(true)} />;
 
   const handleSave = () => {
     saveContent(content);
@@ -181,6 +311,23 @@ export default function CmsPage() {
           >
             <ExternalIcon /> 미리보기
           </a>
+          <button
+            onClick={() => { sessionStorage.removeItem(SESSION_KEY); setAuthed(false); }}
+            style={{
+              display: "flex", alignItems: "center", gap: 7,
+              fontSize: 11, color: "rgba(239,68,68,0.5)",
+              background: "transparent", border: "none", cursor: "pointer",
+              padding: 0, fontFamily: "inherit",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#ef4444")}
+            onMouseLeave={e => (e.currentTarget.style.color = "rgba(239,68,68,0.5)")}
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M8 2h2a1 1 0 011 1v6a1 1 0 01-1 1H8M5 9l3-3-3-3M8 6H1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            로그아웃
+          </button>
         </div>
       </aside>
 
@@ -252,6 +399,7 @@ export default function CmsPage() {
           {activeSection === "products"  && <ProductsPanel  products={content.products} onChange={(products) => update((c) => ({ ...c, products }))} />}
           {activeSection === "process"   && <ProcessPanel   steps={content.process} onChange={(process) => update((c) => ({ ...c, process }))} />}
           {activeSection === "projects"  && <ProjectsPanel  projects={content.projects} onChange={(projects) => update((c) => ({ ...c, projects }))} />}
+          {activeSection === "clients"   && <ClientsPanel   clients={content.clients}  onChange={(clients)  => update((c) => ({ ...c, clients }))} />}
           {activeSection === "cta"       && <CtaPanel       content={content} onChange={(cta) => update((c) => ({ ...c, cta }))} />}
           {activeSection === "footer"    && <FooterPanel    content={content} onChange={(footer) => update((c) => ({ ...c, footer }))} />}
         </div>
@@ -344,9 +492,9 @@ function FormCard({ children, noPad }: { children: React.ReactNode; noPad?: bool
 
 // Accordion item row — shows summary, expands to form
 function AccordionItem({
-  id, isOpen, onToggle, summary, badge, onRemove, children,
+  isOpen, onToggle, summary, badge, onRemove, children,
 }: {
-  id: string; isOpen: boolean; onToggle: () => void;
+  id?: string; isOpen: boolean; onToggle: () => void;
   summary: string; badge?: string; onRemove: () => void;
   children: React.ReactNode;
 }) {
@@ -409,8 +557,8 @@ function OverviewPanel({ content, onNavigate }: { content: SiteContent; onNaviga
   const stats = [
     { label: "Products", value: content.products.length },
     { label: "Projects", value: content.projects.length },
+    { label: "Clients",  value: content.clients.length },
     { label: "Features", value: content.features.length },
-    { label: "Process Steps", value: content.process.length },
   ];
 
   const sections: { id: Section; label: string; desc: string; preview: string; icon: React.ReactNode }[] = [
@@ -419,6 +567,7 @@ function OverviewPanel({ content, onNavigate }: { content: SiteContent; onNaviga
     { id: "products", label: "Products", desc: "SmartGeoKit 제품 목록",  preview: `${content.products.length}개 제품`, icon: <BoxIcon /> },
     { id: "process",  label: "Business", desc: "업무 프로세스 단계",     preview: `${content.process.length}단계`, icon: <FlowIcon /> },
     { id: "projects", label: "Projects", desc: "수행 프로젝트 실적",     preview: `${content.projects.length}건`, icon: <FolderIcon /> },
+    { id: "clients",  label: "Clients",  desc: "협력사 · 고객사 티커",   preview: `${content.clients.length}개 등록`, icon: <UsersIcon /> },
     { id: "cta",      label: "Contact",  desc: "문의 섹션 텍스트",       preview: content.cta.headline.replace("\n", " · "), icon: <MailIcon /> },
     { id: "footer",   label: "Footer",   desc: "브랜드 & 푸터 정보",     preview: content.footer.studioName, icon: <FooterIcon /> },
   ];
@@ -622,6 +771,60 @@ function ProjectsPanel({ projects, onChange }: { projects: ProjectItem[]; onChan
           <Field label="설명" value={p.description} onChange={v => update(p.id, "description", v)} multiline />
         </AccordionItem>
       ))}
+    </div>
+  );
+}
+
+// ── Clients ───────────────────────────────────────────────────
+function ClientsPanel({ clients, onChange }: { clients: ClientItem[]; onChange: (c: ClientItem[]) => void }) {
+  const add = () => {
+    const item: ClientItem = { id: `c${Date.now()}`, name: "새 고객사" };
+    onChange([...clients, item]);
+  };
+
+  return (
+    <div>
+      <PanelHeader title="협력사 · 고객사" action={<AddButton onClick={add} label="고객사 추가" />} />
+      <p style={{ fontSize: 12, color: T.t3, fontWeight: 300, marginBottom: 20 }}>
+        About 섹션 하단의 흘러가는 띠에 표시됩니다. 순서대로 노출됩니다.
+      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        {clients.map((c, i) => (
+          <div key={c.id} style={{
+            display: "flex", alignItems: "center", gap: 12,
+            background: T.card, border: `1px solid ${T.border}`,
+            borderRadius: 8, padding: "10px 14px",
+          }}>
+            <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.12em", color: T.t4, width: 22, flexShrink: 0 }}>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <input
+              type="text"
+              value={c.name}
+              onChange={e => onChange(clients.map(x => x.id === c.id ? { ...x, name: e.target.value } : x))}
+              style={{
+                flex: 1, background: "transparent", border: "none", outline: "none",
+                fontSize: 13, fontWeight: 300, color: T.t1, fontFamily: "inherit",
+              }}
+              onFocus={e => (e.currentTarget.parentElement!.style.borderColor = T.accentGlow)}
+              onBlur={e => (e.currentTarget.parentElement!.style.borderColor = T.border)}
+            />
+            <button
+              onClick={() => onChange(clients.filter(x => x.id !== c.id))}
+              style={{
+                display: "flex", alignItems: "center",
+                background: "transparent", border: "none", cursor: "pointer",
+                color: "rgba(239,68,68,0.4)", padding: 4,
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#ef4444")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(239,68,68,0.4)")}
+            >
+              <TrashIcon />
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

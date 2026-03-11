@@ -54,12 +54,18 @@ export interface ProjectItem {
   tags: string[];
 }
 
+export interface ClientItem {
+  id: string;
+  name: string;
+}
+
 export interface SiteContent {
   hero: HeroContent;
   features: Feature[];
   products: Product[];
   process: ProcessStep[];
   projects: ProjectItem[];
+  clients: ClientItem[];
   cta: CTAContent;
   footer: FooterContent;
 }

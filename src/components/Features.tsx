@@ -1,7 +1,8 @@
 "use client";
-import { Feature } from "@/types/cms";
+import { Feature, ClientItem } from "@/types/cms";
 import Reveal from "./Reveal";
 import CountUp from "./CountUp";
+import ClientsTicker from "./ClientsTicker";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
@@ -13,7 +14,7 @@ const STATS = [
   { to: 50,   suffix: "+", l: "파트너사",  duration: 1200 },
 ];
 
-export default function Features({ features }: { features: Feature[] }) {
+export default function Features({ features, clients }: { features: Feature[]; clients: ClientItem[] }) {
   return (
     <section id="about" style={{
       minHeight: "100svh",
@@ -36,7 +37,7 @@ export default function Features({ features }: { features: Feature[] }) {
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
               <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>스마트한 IT의</span>
-              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>새로운 기준.</span>
+              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>세현만의 새로운 기준</span>
             </h2>
           </div>
         
@@ -105,6 +106,8 @@ export default function Features({ features }: { features: Feature[] }) {
             </div>
           ))}
         </Reveal>
+
+        <ClientsTicker clients={clients} />
 
       </div>
     </section>

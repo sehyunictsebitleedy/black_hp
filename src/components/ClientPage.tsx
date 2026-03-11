@@ -20,7 +20,7 @@ export default function ClientPage() {
   return (
     <>
       <Hero content={content.hero} />
-      <Features features={content.features} />
+      <Features features={content.features} clients={content.clients} />
       <Process steps={content.process} />
       <Works products={content.products} />
       <Projects projects={content.projects} />
