@@ -1,6 +1,5 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import MarqueeStrip from "@/components/MarqueeStrip";
 import Features from "@/components/Features";
 import Works from "@/components/Works";
 import Process from "@/components/Process";
@@ -14,8 +13,7 @@ export default function Home() {
     <main>
       <Nav />
       <Hero content={c.hero} />
-      <MarqueeStrip />
-      <Features features={c.features} />
+<Features features={c.features} />
       <Works works={c.works} />
       <Process steps={c.process} />
       <CTA content={c.cta} />
