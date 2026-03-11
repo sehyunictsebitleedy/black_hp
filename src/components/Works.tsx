@@ -1,11 +1,11 @@
 "use client";
-import { WorkItem } from "@/types/cms";
+import { Product } from "@/types/cms";
 import Reveal from "./Reveal";
 
 const PX = "clamp(24px,5vw,80px)";
 const MAX = 1280;
 
-export default function Works({ works }: { works: WorkItem[] }) {
+export default function Works({ products }: { products: Product[] }) {
   return (
     <section id="products" style={{
       minHeight: "100svh",
@@ -49,7 +49,7 @@ export default function Works({ works }: { works: WorkItem[] }) {
 
         {/* List */}
         <Reveal delay={100} style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-          {works.map((w, i) => (
+          {products.map((w, i) => (
             <div key={w.id}
               style={{
                 display: "flex", alignItems: "center", gap: 24,
@@ -102,9 +102,9 @@ export default function Works({ works }: { works: WorkItem[] }) {
                 ))}
               </div>
 
-              {/* Year */}
+              {/* Version */}
               <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.12em", color: "rgba(255,255,255,0.22)", flexShrink: 0 }}>
-                {w.year}
+                {w.version}
               </span>
             </div>
           ))}

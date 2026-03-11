@@ -13,11 +13,11 @@ export interface Feature {
   description: string;
 }
 
-export interface WorkItem {
+export interface Product {
   id: string;
   title: string;
+  version: string;
   category: string;
-  year: string;
   description: string;
   tags: string[];
 }
@@ -47,7 +47,7 @@ export interface FooterContent {
 export interface SiteContent {
   hero: HeroContent;
   features: Feature[];
-  works: WorkItem[];
+  products: Product[];
   process: ProcessStep[];
   cta: CTAContent;
   footer: FooterContent;

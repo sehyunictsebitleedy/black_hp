@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { SiteContent, Feature, WorkItem, ProcessStep } from "@/types/cms";
+import { SiteContent, Feature, Product, ProcessStep } from "@/types/cms";
 import { loadContent, saveContent, resetContent, defaultContent } from "@/lib/cms-store";
 
-type Section = "overview" | "hero" | "features" | "works" | "process" | "cta" | "footer";
+type Section = "overview" | "hero" | "features" | "products" | "process" | "cta" | "footer";
 
 export default function CmsPage() {
   const [activeSection, setActiveSection] = useState<Section>("overview");
@@ -41,7 +41,7 @@ export default function CmsPage() {
     { id: "overview", label: "Overview", icon: "▦" },
     { id: "hero", label: "Hero", icon: "◉" },
     { id: "features", label: "Features", icon: "◫" },
-    { id: "works", label: "Works", icon: "◱" },
+    { id: "products", label: "Products", icon: "◱" },
     { id: "process", label: "Process", icon: "◳" },
     { id: "cta", label: "CTA", icon: "◆" },
     { id: "footer", label: "Footer", icon: "◻" },
@@ -183,10 +183,10 @@ export default function CmsPage() {
               onChange={(features) => update((c) => ({ ...c, features }))}
             />
           )}
-          {activeSection === "works" && (
-            <WorksPanel
-              works={content.works}
-              onChange={(works) => update((c) => ({ ...c, works }))}
+          {activeSection === "products" && (
+            <ProductsPanel
+              products={content.products}
+              onChange={(products) => update((c) => ({ ...c, products }))}
             />
           )}
           {activeSection === "process" && (
@@ -225,7 +225,7 @@ function OverviewPanel({
   const cards = [
     { section: "hero" as Section, label: "Hero", preview: content.hero.headline.split("\n")[0] },
     { section: "features" as Section, label: "Features", preview: `${content.features.length} items` },
-    { section: "works" as Section, label: "Works", preview: `${content.works.length} projects` },
+    { section: "products" as Section, label: "Products", preview: `${content.products.length} products` },
     { section: "process" as Section, label: "Process", preview: `${content.process.length} steps` },
     { section: "cta" as Section, label: "CTA", preview: content.cta.headline.split("\n")[0] },
     { section: "footer" as Section, label: "Footer", preview: content.footer.studioName },
@@ -423,54 +423,54 @@ function FeaturesPanel({
   );
 }
 
-function WorksPanel({
-  works,
+function ProductsPanel({
+  products,
   onChange,
 }: {
-  works: WorkItem[];
-  onChange: (w: WorkItem[]) => void;
+  products: Product[];
+  onChange: (p: Product[]) => void;
 }) {
-  const updateItem = (id: string, key: keyof WorkItem, value: string | string[]) => {
-    onChange(works.map((w) => (w.id === id ? { ...w, [key]: value } : w)));
+  const updateItem = (id: string, key: keyof Product, value: string | string[]) => {
+    onChange(products.map((p) => (p.id === id ? { ...p, [key]: value } : p)));
   };
 
   const addItem = () => {
-    const newItem: WorkItem = {
-      id: `w${Date.now()}`,
-      title: "New Project",
-      category: "Design",
-      year: new Date().getFullYear().toString(),
-      description: "Project description.",
-      tags: ["Design"],
+    const newItem: Product = {
+      id: `p${Date.now()}`,
+      title: "New Product",
+      version: "v1.0",
+      category: "GIS",
+      description: "제품 설명을 입력하세요.",
+      tags: ["Web"],
     };
-    onChange([...works, newItem]);
+    onChange([...products, newItem]);
   };
 
-  const removeItem = (id: string) => onChange(works.filter((w) => w.id !== id));
+  const removeItem = (id: string) => onChange(products.filter((p) => p.id !== id));
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-light" style={{ letterSpacing: "-0.02em" }}>Works</h2>
+        <h2 className="text-2xl font-light" style={{ letterSpacing: "-0.02em" }}>Products</h2>
         <button onClick={addItem} className="btn-secondary text-xs" style={{ padding: "8px 16px" }}>
-          + Add Work
+          + Add Product
         </button>
       </div>
 
-      {works.map((work) => (
-        <SectionCard key={work.id} title={work.title}>
+      {products.map((product) => (
+        <SectionCard key={product.id} title={product.title}>
           <div className="flex gap-4">
             <div className="flex-1">
               <div className="grid grid-cols-2 gap-4">
-                <Field label="Title" value={work.title} onChange={(v) => updateItem(work.id, "title", v)} />
-                <Field label="Category" value={work.category} onChange={(v) => updateItem(work.id, "category", v)} />
-                <Field label="Year" value={work.year} onChange={(v) => updateItem(work.id, "year", v)} />
-                <Field label="Tags (comma-separated)" value={work.tags.join(", ")} onChange={(v) => updateItem(work.id, "tags", v.split(",").map((t) => t.trim()))} />
+                <Field label="Title" value={product.title} onChange={(v) => updateItem(product.id, "title", v)} />
+                <Field label="Version" value={product.version} onChange={(v) => updateItem(product.id, "version", v)} />
+                <Field label="Category" value={product.category} onChange={(v) => updateItem(product.id, "category", v)} />
+                <Field label="Tags (comma-separated)" value={product.tags.join(", ")} onChange={(v) => updateItem(product.id, "tags", v.split(",").map((t) => t.trim()))} />
               </div>
-              <Field label="Description" value={work.description} onChange={(v) => updateItem(work.id, "description", v)} multiline />
+              <Field label="Description" value={product.description} onChange={(v) => updateItem(product.id, "description", v)} multiline />
             </div>
             <button
-              onClick={() => removeItem(work.id)}
+              onClick={() => removeItem(product.id)}
               className="self-start mt-6 p-2 rounded transition-colors"
               style={{ color: "var(--text-tertiary)", background: "var(--surface-2)" }}
             >

@@ -14,7 +14,7 @@ export default function Home() {
       <Nav />
       <Hero content={c.hero} />
 <Features features={c.features} />
-      <Works works={c.works} />
+      <Works products={c.products} />
       <Process steps={c.process} />
       <CTA content={c.cta} />
       <Footer content={c.footer} />
