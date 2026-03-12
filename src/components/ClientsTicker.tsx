@@ -22,15 +22,21 @@ export default function ClientsTicker({ clients }: { clients: ClientItem[] }) {
         Partners &amp; Clients
       </p>
 
-      <div style={{ overflow: "hidden", maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+      <div style={{
+        overflow: "hidden",
+        maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+      }}>
         <div
-          className="marquee"
           style={{
             display: "flex",
             gap: 0,
             width: "max-content",
             willChange: "transform",
+            animation: "marquee 28s linear infinite",
           }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.animationPlayState = "paused"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.animationPlayState = "running"; }}
         >
           {items.map((c, i) => (
             <div key={`${c.id}-${i}`} style={{

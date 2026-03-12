@@ -16,7 +16,7 @@ export default function Works({ products }: { products: Product[] }) {
     <section id="products" style={{
       minHeight: "100svh",
       background: "#0d0d15",
-      borderTop: "1px solid rgba(255,255,255,0.055)",
+      borderTop: "1px solid rgba(255,255,255,0.10)",
       display: "flex",
       alignItems: "center",
     }}>
@@ -60,7 +60,7 @@ export default function Works({ products }: { products: Product[] }) {
               style={{
                 display: "flex", alignItems: "flex-start", gap: 24,
                 padding: "26px 0",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                borderBottom: "1px solid rgba(255,255,255,0.13)",
                 cursor: "pointer",
                 transition: "padding-left 0.35s cubic-bezier(0.16,1,0.3,1)",
               }}

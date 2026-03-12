@@ -18,8 +18,8 @@ export default function Features({ features, clients }: { features: Feature[]; c
   return (
     <section id="about" style={{
       minHeight: "100svh",
-      background: "#08080c",
-      borderTop: "1px solid rgba(255,255,255,0.055)",
+      background: "#0c0a1a",
+      borderTop: "1px solid rgba(139,124,248,0.12)",
       display: "flex",
       alignItems: "center",
     }}>
@@ -53,7 +53,7 @@ export default function Features({ features, clients }: { features: Feature[]; c
           {features.map((f) => (
             <div key={f.id} style={{
               background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.13)",
               padding: "36px 32px",
               borderRadius: 3,
               transition: "background 0.3s, border-color 0.3s",
@@ -65,13 +65,13 @@ export default function Features({ features, clients }: { features: Feature[]; c
             }}
             onMouseLeave={e => {
               e.currentTarget.style.background = "rgba(255,255,255,0.02)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.13)";
             }}
             >
               <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.18em", color: "rgba(255,255,255,0.2)", marginBottom: 36, fontVariantNumeric: "tabular-nums" }}>
                 {f.number}
               </p>
-              <h3 style={{ fontSize: 17, fontWeight: 300, lineHeight: 1.45, letterSpacing: "-0.015em", color: "#fff", marginBottom: 14, wordBreak: "keep-all" }}>
+              <h3 style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.45, letterSpacing: "-0.015em", color: "#fff", marginBottom: 14, wordBreak: "keep-all" }}>
                 {f.title}
               </h3>
               <p style={{ fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.42)", wordBreak: "keep-all" }}>
@@ -90,7 +90,7 @@ export default function Features({ features, clients }: { features: Feature[]; c
           {STATS.map(s => (
             <div key={s.l} style={{
               background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.13)",
               padding: "28px 32px",
               borderRadius: 3,
             }}>

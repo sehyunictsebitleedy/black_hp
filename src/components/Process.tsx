@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { ProcessStep } from "@/types/cms";
 import Reveal from "./Reveal";
 
@@ -10,11 +11,23 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
     <section id="business" style={{
       minHeight: "100svh",
       background: "#08080c",
-      borderTop: "1px solid rgba(255,255,255,0.055)",
+      borderTop: "1px solid rgba(255,255,255,0.10)",
       display: "flex",
       alignItems: "center",
+      position: "relative",
+      overflow: "hidden",
     }}>
-      <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%" }}>
+
+      {/* BG image */}
+      <Image
+        src="/business_bg.png"
+        alt=""
+        fill
+        style={{ objectFit: "cover", objectPosition: "center", opacity: 0.28 }}
+      />
+      {/* Dark overlay */}
+      <div style={{ position: "absolute", inset: 0, background: "rgba(8,8,12,0.65)" }} />
+      <div style={{ maxWidth: MAX, margin: "0 auto", padding: `80px ${PX}`, width: "100%", position: "relative" }}>
 
         {/* Header */}
         <Reveal style={{
@@ -24,7 +37,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
         }}>
           <div>
             <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(139,124,248,0.7)", marginBottom: 20 }}>
-              How We Work
+              SEbit AI brand
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
               <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>세현의 SEbit</span>
@@ -43,7 +56,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
           {steps.map((step) => (
             <div key={step.id} style={{
               background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.13)",
               padding: "36px 30px",
               borderRadius: 3,
               transition: "background 0.3s, border-color 0.3s",
@@ -55,7 +68,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
             }}
             onMouseLeave={e => {
               e.currentTarget.style.background = "rgba(255,255,255,0.02)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.13)";
             }}
             >
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 52 }}>
@@ -76,7 +89,7 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
                   {step.detail}
                 </span>
               </div>
-              <h3 style={{ fontSize: 15, fontWeight: 400, lineHeight: 1.45, color: "#fff", marginBottom: 12, wordBreak: "keep-all", letterSpacing: "-0.01em" }}>
+              <h3 style={{ fontSize: 24, fontWeight: 500, lineHeight: 1.45, color: "#fff", marginBottom: 12, wordBreak: "keep-all", letterSpacing: "-0.01em" }}>
                 {step.title}
               </h3>
               <p style={{ fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.38)", wordBreak: "keep-all" }}>

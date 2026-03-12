@@ -19,8 +19,8 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
   return (
     <section id="project" style={{
       minHeight: "100svh",
-      background: "#0d0d15",
-      borderTop: "1px solid rgba(255,255,255,0.055)",
+      background: "#080d18",
+      borderTop: "1px solid rgba(96,165,250,0.10)",
       display: "flex",
       alignItems: "center",
       overflow: "hidden",

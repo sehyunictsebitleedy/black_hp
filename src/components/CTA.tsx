@@ -17,7 +17,7 @@ export default function CTA({ content }: { content: CTAContent }) {
     <section id="contact" style={{
       minHeight: "100svh",
       background: "#0d0d15",
-      borderTop: "1px solid rgba(255,255,255,0.055)",
+      borderTop: "1px solid rgba(255,255,255,0.10)",
       display: "flex",
       alignItems: "center",
       position: "relative",

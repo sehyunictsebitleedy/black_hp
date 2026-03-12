@@ -74,6 +74,15 @@ a { text-decoration: none; color: inherit; }
 .marquee { animation: marquee 28s linear infinite; }
 .marquee:hover { animation-play-state: paused; }
 
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-6px); }
+  40%     { transform: translateX(6px); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
+}
+.shake { animation: shake 0.4s ease; }
+
 .au { opacity:0; animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards; }
 .d1{animation-delay:.1s}  .d2{animation-delay:.22s}
 .d3{animation-delay:.36s} .d4{animation-delay:.5s} .d5{animation-delay:.68s}
