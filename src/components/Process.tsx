@@ -27,8 +27,8 @@ export default function Process({ steps }: { steps: ProcessStep[] }) {
               How We Work
             </p>
             <h2 style={{ lineHeight: 1.05, letterSpacing: "-0.04em", wordBreak: "keep-all" }}>
-              <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>검증된 프로세스로</span>
-              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>신뢰를 쌓습니다.</span>
+              <span style={{ display: "block", fontSize: "5vw", fontWeight: 400, color: "#fff" }}>세현의 SEbit</span>
+              <span style={{ display: "block", fontSize: "clamp(2rem,4vw,4rem)", fontWeight: 200, color: "rgba(255,255,255,0.18)" }}>AI 브랜드를 소개합니다.</span>
             </h2>
           </div>
           

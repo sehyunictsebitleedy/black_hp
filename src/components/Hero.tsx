@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { HeroContent } from "@/types/cms";
 
 const PX = "clamp(24px,5vw,80px)";
@@ -21,6 +22,18 @@ export default function Hero({ content }: { content: HeroContent }) {
 
       {/* ── Background layer ── */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden" }}>
+
+        {/* BG image */}
+        <Image
+          src="/main_bg.png"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: "cover", objectPosition: "center", opacity: 0.35 }}
+        />
+
+        {/* Dark overlay */}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(8,8,12,0.55)" }} />
 
         {/* Orb 1 — Violet (top right) */}
         <div className="orb1" style={{
