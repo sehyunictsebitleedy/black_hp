@@ -107,8 +107,15 @@ black_hp/
 Violet:  #8b7cf8
 Dim:     rgba(139,124,248,0.12)
 Glow:    rgba(139,124,248,0.25)
-배경:    #08080c (About) / #0d0d15 (Products, Project, Contact)
+배경:    #08080c (Hero, Business) / #0c0a1a (About — violet tint) / #080d18 (Project — navy tint) / #0d0d15 (Products, Contact)
 ```
+
+### 배경 이미지
+
+| 섹션 | 파일 | opacity | 오버레이 |
+|---|---|---|---|
+| Hero | `public/main_bg.png` | 0.35 | `rgba(8,8,12,0.55)` |
+| Business | `public/business_bg.png` | 0.28 | `rgba(8,8,12,0.65)` |
 
 ### 배경 애니메이션
 

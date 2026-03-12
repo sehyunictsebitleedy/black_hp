@@ -179,6 +179,12 @@ src/
 - [x] 섹션 순서 변경: About → Business → Product → Project 순
 - [x] 포인트 헤딩 5vw / fontWeight:400 통일
 - [x] 전체 액센트 컬러 violet(`#8b7cf8`) 통일
+- [x] Hero 섹션 — `main_bg.png` 배경 이미지 (opacity 0.35 + 다크 오버레이)
+- [x] Business 섹션 — `business_bg.png` 배경 이미지 (opacity 0.28 + 다크 오버레이)
+- [x] 섹션 컬러 포인트 — About `#0c0a1a` (violet), Project `#080d18` (navy)
+- [x] 전체 카드·섹션 보더 opacity 강화 (카드 `0.06→0.13`, 섹션 구분선 `0.055→0.10`)
+- [x] ClientsTicker 마퀴 애니메이션 — 인라인 style animation으로 수정, WebkitMaskImage 추가
+- [x] globals.css — shake keyframe 추가 (CMS 로그인 오류 흔들림용)
 
 ---
 
